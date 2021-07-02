@@ -33,10 +33,20 @@ namespace Library.TestTools.Lendings
             context.SaveChanges();
             return lending;
         }
-        public static AddLendingDto GenerateAddMemberDto(DateTime returnDate, int memberId,int bookId)
+        public static AddLendingDto GenerateAddLendingDto(DateTime returnDate, int memberId,int bookId)
         {
             return new AddLendingDto
             {
+                ReturnDate = returnDate,
+                MemberId = memberId,
+                BookId = bookId
+            };
+        }
+        public static UpdateLendingDto GenerateUpdateLendingDto(DateTime returnDate, DateTime deliveryDate, int memberId, int bookId)
+        {
+            return new UpdateLendingDto
+            {
+                DeliveryDate = deliveryDate,
                 ReturnDate = returnDate,
                 MemberId = memberId,
                 BookId = bookId

@@ -38,6 +38,18 @@ namespace Library.Services.Lendings
             return lending.Id;
         }
 
+        public async Task Update(UpdateLendingDto dto)
+        {
+            GaurdAgainstDeliveryDateAfterRetrunDate(dto);
+            await _unitOfWork.Completed();
+        }
+
+        private static void GaurdAgainstDeliveryDateAfterRetrunDate(UpdateLendingDto dto)
+        {
+            if (dto.DeliveryDate > dto.ReturnDate)
+                throw new DeliveryDateIsAfterReturnDateException();
+        }
+
         private void GaurdAgainstMemberAgeCantBeOutOfBookAgeRange(AddLendingDto dto)
         {
             var book = _bookRepository.FindById(dto.BookId);
