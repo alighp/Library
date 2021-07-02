@@ -27,15 +27,15 @@ namespace Library.Services.Tests.Specs.Members.Add
         {
 
         }
-        [When("یک شخص با نام علی قناعت پیشه و سن 28 سال و آدرس " +
+        [When("یک شخص با نام علی قناعت پیشه و تاریخ تولد 1993/07/02 و آدرس " +
             "صدرا – فازیک – بلوار فردوسی به فهرست اعضای کتابخانه اضافه می کنم.")]
         private async Task When()
         {
-            var birthDate = new DateTime(2021, 07, 02);
+            var birthDate = new DateTime(1993, 07, 02);
             dto = MemberFactory.GenerateAddMemberDto(birthDate, "صدرا – فازیک – بلوار فردوسی", "علی", "قناعت پیشه");
             await sut.Add(dto);
         }
-        [Then("باید تنها یک شخص با نام علی قناعت پیشه و سن 28 سال و آدرس " +
+        [Then("باید تنها یک شخص با نام علی قناعت پیشه و تاریخ تولد 1993/07/02 و آدرس " +
             "صدرا – فازیک – بلوار فردوسی در فهرست اعضای کتابخانه وجود داشته باشد")]
         private void Then()
         {

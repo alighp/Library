@@ -26,8 +26,4 @@
     <ProjectReference Include="..\Library.TestTools\Library.TestTools.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Lendings\" />
-  </ItemGroup>
-
 </Project>

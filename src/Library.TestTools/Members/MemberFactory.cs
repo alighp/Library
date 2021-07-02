@@ -28,7 +28,7 @@ namespace Library.TestTools.Members
                 Address = "dummy",
                 FirstName = "dummy",
                 LastName = "dummy",
-                BirthDate = new DateTime(2021,07,02)
+                BirthDate = new DateTime(1993,07,02)
             };
             context.Members.Add(member);
             context.SaveChanges();

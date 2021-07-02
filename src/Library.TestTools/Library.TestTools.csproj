@@ -5,10 +5,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Lendings\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\Library.Infrastructure\Library.Infrastructure.csproj" />
     <ProjectReference Include="..\Library.Persistence\Library.Persistence.csproj" />
     <ProjectReference Include="..\Library.Services\Library.Services.csproj" />

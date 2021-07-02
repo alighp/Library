@@ -23,12 +23,6 @@ namespace Library.TestTools.Books
             book.Author = author;
             return this;
         }
-
-        public BookBuilder WithCategory(int categoryId)
-        {
-            book.CategoryId = categoryId;
-            return this;
-        }
         public BookBuilder WithMinAge(byte minAge)
         {
             book.MinAge = minAge;
@@ -40,8 +34,9 @@ namespace Library.TestTools.Books
             return this;
         }
 
-        public Book Build(EFDataContext context)
+        public Book Build(EFDataContext context,int categoryId)
         {
+            book.CategoryId = categoryId;
             context.Books.Add(book);
             context.SaveChanges();
             return book;

@@ -34,8 +34,7 @@ namespace Library.Services.Tests.Specs.Books.Get
                                         .WithAuthor("آنتوان دوسنت اگزوپری")
                                         .WithMinAge(16)
                                         .WithMaxAge(80)
-                                        .WithCategory(bookCategory.Id)
-                                        .Build(context);
+                                        .Build(context, bookCategory.Id);
         }
         [When("فهرست کتاب¬های دسته¬بندی رمان خارجی را مشاهده می¬کنم")]
         private void When() {
