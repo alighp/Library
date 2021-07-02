@@ -1,3 +1,17 @@
+using Library.Persistence;
+using Library.Persistence.Books;
+using Library.Persistence.Categories;
+using Library.Persistence.Lendings;
+using Library.Persistence.Members;
+using Library.Services;
+using Library.Services.Books;
+using Library.Services.Books.Contracts;
+using Library.Services.Categories;
+using Library.Services.Categories.Contracts;
+using Library.Services.Lendings;
+using Library.Services.Lendings.Contracts;
+using Library.Services.Members;
+using Library.Services.Members.Contracts;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -28,6 +42,16 @@ namespace Library.RestAPI
         {
 
             services.AddControllers();
+            services.AddScoped<LendingService, LendingAppService>();
+            services.AddScoped<MemberService, MemberAppService>();
+            services.AddScoped<BookService, BookAppService>();
+            services.AddScoped<BookCategoryService, BookCategoryAppService>();
+            services.AddScoped<BookRepository, EFBookRepository>();
+            services.AddScoped<MemberRepository, EFMemberRepository>();
+            services.AddScoped<BookCategoryRepository, EFBookCategoryRepository>();
+            services.AddScoped<LendingRepository, EFLendingRepository>();
+            services.AddScoped<UnitOfWork, EFUnitOfWork>();
+            services.AddDbContext<EFDataContext>(_ => Configuration.GetConnectionString("SqlConnection"));
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Library.RestAPI", Version = "v1" });
