@@ -16,5 +16,10 @@ namespace Library.Persistence.Members
         {
             _context.Members.Add(member);
         }
+
+        public Member FindById(int memberId)
+        {
+            return _context.Members.Find(memberId);
+        }
     }
 }
