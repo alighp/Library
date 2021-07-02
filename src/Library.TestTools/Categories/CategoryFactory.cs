@@ -13,7 +13,7 @@ namespace Library.TestTools.Categories
             var category = new BookCategory {
                 Title = title
             };
-            context.bookCategories.Add(category);
+            context.BookCategories.Add(category);
             context.SaveChanges();
             return category;
         }

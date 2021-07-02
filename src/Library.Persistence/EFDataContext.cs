@@ -24,7 +24,7 @@ namespace Library.Persistence
         }
         public DbSet<Book> Books { get; set; }
         public DbSet<Member> Members { get; set; }
-        public DbSet<BookCategory> bookCategories { get; set; }
+        public DbSet<BookCategory> BookCategories { get; set; }
         public DbSet<Lending> Lendings { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

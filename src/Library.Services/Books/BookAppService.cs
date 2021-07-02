@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using Library.Entities;
 using Library.Services.Books.Contracts;
 
@@ -28,6 +29,11 @@ namespace Library.Services.Books
             _repository.Add(book);
             await _unitOfWork.Completed();
             return book.Id;
+        }
+
+        public List<GetBookDto> GetAllBooksByCategoryId(int id)
+        {
+            return _repository.GetAllBooksByCategoryId(id);
         }
 
         public async Task Update(UpdateBookDto dto, int id)

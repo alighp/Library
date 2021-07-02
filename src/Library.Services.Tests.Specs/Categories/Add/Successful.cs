@@ -36,7 +36,7 @@ namespace Library.Services.Tests.Specs.Categories.Add
             " در فهرست دسته¬بندی کتاب¬ها وجود داشته باشد")]
         private void Then() {
 
-            var expected = context.bookCategories.First();
+            var expected = context.BookCategories.First();
             expected.Title.Should().Be("رمان خارجی");
         }
         [Fact]

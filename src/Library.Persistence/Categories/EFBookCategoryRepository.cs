@@ -18,7 +18,7 @@ namespace Library.Persistence.Categories
 
         public void Add(BookCategory category)
         {
-            _context.bookCategories.Add(category);
+            _context.BookCategories.Add(category);
 
         }
     }

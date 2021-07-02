@@ -11,9 +11,13 @@ namespace Library.TestTools.Books
             Author = "dummy",
             MinAge = 10,
             MaxAge = 20,
-            Category = new BookCategory { Title = "dummy-category" }
         };
 
+        public BookBuilder WithTitle(string title)
+        {
+            book.Title = title;
+            return this;
+        }
         public BookBuilder WithAuthor(string author)
         {
             book.Author = author;
@@ -25,14 +29,14 @@ namespace Library.TestTools.Books
             book.CategoryId = categoryId;
             return this;
         }
-        public BookBuilder WithMinAge(int categoryId)
+        public BookBuilder WithMinAge(byte minAge)
         {
-            book.CategoryId = categoryId;
+            book.MinAge = minAge;
             return this;
         }
-        public BookBuilder WithMaxAge(int categoryId)
+        public BookBuilder WithMaxAge(byte maxAge)
         {
-            book.CategoryId = categoryId;
+            book.MaxAge = maxAge;
             return this;
         }
 
