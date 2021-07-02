@@ -1,0 +1,18 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="Books\Exceptions\" />
+    <Folder Include="Categories\Exceptions\" />
+    <Folder Include="Lendings\Exceptions\" />
+    <Folder Include="Members\Exceptions\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Library.Entites\Library.Entites.csproj" />
+  </ItemGroup>
+
+</Project>
