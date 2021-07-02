@@ -1,5 +1,5 @@
 ﻿using System.Threading.Tasks;
-using Library.Entites;
+using Library.Entities;
 using Library.Services.Categories;
 
 namespace Library.Services.Books.Contracts

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using Library.Entites;
+using Library.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
@@ -13,7 +13,6 @@ namespace Library.Persistence.Members
         {
             builder.ToTable("Members");
             builder.HasKey(_ => _.Id);
-            builder.Property(_ => _.Id).IsRequired().ValueGeneratedOnAdd();
             builder.Property(_ => _.Address).IsRequired().IsUnicode().HasMaxLength(100);
             builder.Property(_ => _.BirthDate).IsRequired();
             builder.Property(_ => _.FirstName).IsRequired().IsUnicode().HasMaxLength(50);

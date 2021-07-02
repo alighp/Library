@@ -2,15 +2,16 @@
 using System.Linq;
 using System.Threading.Tasks;
 using FluentAssertions;
-using Library.Entites;
+using Library.Entities;
 using Library.Persistence;
 using Library.Services.Books.Contracts;
 using Library.Services.Categories;
 using Library.Services.Tests.Specs.Infrastructure;
 using Library.TestTools.Books;
+using Library.TestTools.Categories;
 using Xunit;
 
-namespace Library.Services.Tests.Specs.Books
+namespace Library.Services.Tests.Specs.Books.Add
 {
     [Scenario("ثبت یک کتاب در دسته¬بندی")]
     public class Successful : EFDataContextDatabaseFixture
@@ -26,24 +27,14 @@ namespace Library.Services.Tests.Specs.Books
         [Given("یک دسته¬بندی با عنوان رمان خارجی وجود دارد")]
         private void Given() {
 
-             bookCategory = new BookCategory {
-                Title = "رمان خارجی"
-            };
-            context.bookCategories.Add(bookCategory);
-            context.SaveChanges();
+            bookCategory = CategoryFactory.GenerateCategory(context, "رمان خارجی");
         }
         [When("کتابی با عنوان شازده کوچولو و نویسنده¬ آنتوان دوسنت اگزوپری " +
             "در دسته¬بندی رمان خارجی و با رده سنی 16تا80 سال اضافه می¬نمایم")]
         private async Task When()
         {
-            var dto = new AddBookDto
-            {
-                Title = "شازده کوچولو",
-                Author = "آنتوان دوسنت اگزوپری",
-                MinAge = 16,
-                MaxAge = 80,
-                CategoryId = bookCategory.Id
-            };
+            var dto = BookFactory.GenerateAddBookDto(bookCategory.Id,"شازده کوچولو",
+                "آنتوان دوسنت اگزوپری",16,80);
             await sut.Add(dto);
         }
         [Then("باید تنها یک دسته¬بندی با عنوان رمان خارجی" +

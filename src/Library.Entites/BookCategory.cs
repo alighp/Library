@@ -1,4 +1,4 @@
-﻿namespace Library.Entites
+﻿namespace Library.Entities
 {
     public class BookCategory {
         public int Id { get; set; }

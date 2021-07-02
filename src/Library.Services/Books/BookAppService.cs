@@ -1,5 +1,5 @@
 ﻿using System.Threading.Tasks;
-using Library.Entites;
+using Library.Entities;
 using Library.Services.Books.Contracts;
 
 namespace Library.Services.Books
@@ -30,15 +30,15 @@ namespace Library.Services.Books
             return book.Id;
         }
 
-        //public async Task Update(AddBookDto dto, int id)
-        //{
-        //    Book book = _repository.FindById(id);
-        //    book.Title = dto.Title;
-        //    book.Author = dto.Author;
-        //    book.MinAge = dto.MinAge;
-        //    book.MaxAge = dto.MaxAge;
-        //    book.CategoryId = dto.CategoryId;
-        //    await _unitOfWork.Completed();
-        //}
+        public async Task Update(UpdateBookDto dto, int id)
+        {
+            Book book = _repository.FindById(id);
+            book.Title = dto.Title;
+            book.Author = dto.Author;
+            book.MinAge = dto.MinAge;
+            book.MaxAge = dto.MaxAge;
+            book.CategoryId = dto.CategoryId;
+            await _unitOfWork.Completed();
+        }
     }
 }

@@ -6,9 +6,10 @@ using Library.Persistence.Categories;
 using Library.Services.Categories;
 using Library.Services.Categories.Contracts;
 using Library.Services.Tests.Specs.Infrastructure;
+using Library.TestTools.Categories;
 using Xunit;
 
-namespace Library.Services.Tests.Specs.Categories
+namespace Library.Services.Tests.Specs.Categories.Add
 {
     [Scenario("ثبت یک دسته بندی")]
     public class Successful : EFDataContextDatabaseFixture
@@ -28,10 +29,7 @@ namespace Library.Services.Tests.Specs.Categories
         [When("یک دسته بندی با عنوان رمان خارجی اضافه می کنم")]
         private async Task When()
         {
-            var dto = new AddBookCategoryDto
-            {
-                Title = "رمان خارجی"
-            };
+            var dto = CategoryFactory.GenerateAddBookCategoryDto(context, "رمان خارجی");
             await sut.Add(dto);
         }
         [Then("باید تنها یک دسته¬بندی با عنوان رمان خارجی" +

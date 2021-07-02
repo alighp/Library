@@ -1,4 +1,4 @@
-﻿using Library.Entites;
+﻿using Library.Entities;
 using Library.Services.Books.Contracts;
 
 namespace Library.Persistence.Books
@@ -17,9 +17,9 @@ namespace Library.Persistence.Books
             _context.Books.Add(book);
         }
 
-        //public Book FindById(int id)
-        //{
-        //    _context.Books.f
-        //}
+        public Book FindById(int id)
+        {
+            return _context.Books.Find(id);
+        }
     }
 }

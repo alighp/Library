@@ -1,4 +1,4 @@
-﻿using Library.Entites;
+﻿using Library.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
@@ -11,7 +11,6 @@ namespace Library.Persistence.Books
         {
             builder.ToTable("Books");
             builder.HasKey(_ => _.Id);
-            builder.Property(_ => _.Id).IsRequired().ValueGeneratedOnAdd();
             builder.Property(_ => _.Title).IsRequired().IsUnicode().HasMaxLength(100);
             builder.Property(_ => _.Author).IsRequired().IsUnicode().HasMaxLength(100);
             builder.Property(_ => _.MaxAge).IsRequired();

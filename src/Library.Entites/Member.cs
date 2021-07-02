@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Library.Entites
+namespace Library.Entities
 {
     public class Member {
         public int Id { get; set; }

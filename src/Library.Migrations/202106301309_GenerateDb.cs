@@ -36,14 +36,14 @@ namespace Library.Migrations
                  .WithColumn("Author").AsString(100).NotNullable()
                  .WithColumn("MinAge").AsByte().NotNullable()
                  .WithColumn("MaxAge").AsByte().NotNullable()
-                 .WithColumn("CategoryID").AsInt32().NotNullable().ForeignKey("FK_Books_BookCategories", "BookCategories", "Id").OnDelete(System.Data.Rule.Cascade);
+                 .WithColumn("CategoryId").AsInt32().NotNullable().ForeignKey("FK_Books_BookCategories", "BookCategories", "Id").OnDelete(System.Data.Rule.Cascade);
 
             Create.Table("Lendings")
                  .WithColumn("Id").AsInt32().PrimaryKey().Identity()
                  .WithColumn("DeliveryDate").AsDate().Nullable()
                  .WithColumn("ReturnDate").AsDate().NotNullable()
-                 .WithColumn("MemberID").AsInt32().NotNullable().ForeignKey("FK_Lendings_Members", "Members", "Id").OnDelete(System.Data.Rule.Cascade)
-                 .WithColumn("BookID").AsInt32().NotNullable().ForeignKey("FK_Lendings_Books", "Books", "Id").OnDelete(System.Data.Rule.Cascade);
+                 .WithColumn("MemberId").AsInt32().NotNullable().ForeignKey("FK_Lendings_Members", "Members", "Id").OnDelete(System.Data.Rule.Cascade)
+                 .WithColumn("BookId").AsInt32().NotNullable().ForeignKey("FK_Lendings_Books", "Books", "Id").OnDelete(System.Data.Rule.Cascade);
 
 
         }

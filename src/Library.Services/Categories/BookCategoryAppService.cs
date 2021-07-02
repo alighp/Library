@@ -1,5 +1,5 @@
 ﻿using System.Threading.Tasks;
-using Library.Entites;
+using Library.Entities;
 using Library.Services.Books.Contracts;
 using Library.Services.Categories.Contracts;
 

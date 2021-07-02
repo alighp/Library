@@ -6,6 +6,6 @@ namespace Library.Services.Books.Contracts
     public interface BookService
     {
         Task<int> Add(AddBookDto dto);
-        //Task Update(AddBookDto dto, int id);
+        Task Update(UpdateBookDto dto, int id);
     }
 }
