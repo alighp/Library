@@ -1,7 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using Library.Entities;
 using Library.Services.Books.Contracts;
+using Library.Services.Categories.Exceptions;
 
 namespace Library.Services.Books
 {
@@ -19,6 +21,7 @@ namespace Library.Services.Books
         }
         public async Task<int> Add(AddBookDto dto)
         {
+            gaurdAgainstBookCategoryNotFound(dto.CategoryId);
             Book book = new Book {
                 Author = dto.Author,
                 MaxAge = dto.MaxAge,
@@ -29,6 +32,12 @@ namespace Library.Services.Books
             _repository.Add(book);
             await _unitOfWork.Completed();
             return book.Id;
+        }
+
+        private void gaurdAgainstBookCategoryNotFound(int categoryId)
+        {
+            if (_categoryRepository.ExistById(categoryId) == false)
+                throw new BookCategoryNotFoundException();
         }
 
         public List<GetBookDto> GetAllBooksByCategoryId(int id)

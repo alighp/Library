@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Linq;
+using System.Threading.Tasks;
 using Library.Entities;
 using Library.Persistence;
 using Library.Services.Books.Contracts;
@@ -20,6 +21,11 @@ namespace Library.Persistence.Categories
         {
             _context.BookCategories.Add(category);
 
+        }
+
+        public bool ExistById(int categoryId)
+        {
+            return _context.BookCategories.Any(_ => _.Id == categoryId);
         }
     }
 }
