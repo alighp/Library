@@ -48,11 +48,11 @@ namespace Library.Services.Tests.Specs.Lendings.Add
                                             .WithBirthDate(birthDate)
                                             .WithAddress("صدرا – فازیک – بلوار فردوسی")
                                             .Build(context);
-            var category = CategoryFactory.GenerateCategory(context,"dummy");
+            var category = CategoryFactory.GenerateCategory(context, "dummy");
             book = new BookBuilder().WithTitle("شازده کوچولو")
                                         .WithMinAge(16)
                                         .WithMaxAge(80)
-                                        .Build(context,category.Id);
+                                        .Build(context, category.Id);
 
         }
         [When("یک کتاب با عنوان شازده کوچولو و با رده سنی 16 تا 80 سال" +
@@ -61,8 +61,9 @@ namespace Library.Services.Tests.Specs.Lendings.Add
             "امانت داده شود")]
         private async Task When()
         {
-            var returnDate = new DateTime(2021,07,04);
-            dto = new AddLendingDto { 
+            var returnDate = new DateTime(2021, 07, 04);
+            dto = new AddLendingDto
+            {
                 BookId = book.Id,
                 MemberId = member.Id,
                 ReturnDate = returnDate

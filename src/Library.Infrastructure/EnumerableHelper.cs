@@ -16,7 +16,7 @@ namespace Library.Infrastructure
                     action(enumerator.Current);
                 }
             }
-           
+
         }
 
         public static void ForEach<T>(this IEnumerable<T> source, Action<T, int> action)
@@ -31,7 +31,7 @@ namespace Library.Infrastructure
                     ++index;
                 }
             }
-           
+
         }
 
         //public static IEnumerable<T> Exclude<T>(this IEnumerable<T> source, T item)

@@ -2,7 +2,6 @@
 using Library.Persistence;
 using Library.Services.Members.Contracts;
 using Library.Services.Tests.Specs.Infrastructure;
-using Library.TestTools.Books;
 using Library.TestTools.Members;
 using System;
 using System.Linq;

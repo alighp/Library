@@ -65,7 +65,7 @@ namespace Library.Services.Lendings
 
         private void GaurdAgainstLendingNotfound(int lendingId)
         {
-            if (_repository.Find(lendingId)==null)
+            if (_repository.Find(lendingId) == null)
                 throw new LendingNotFoundException();
         }
 

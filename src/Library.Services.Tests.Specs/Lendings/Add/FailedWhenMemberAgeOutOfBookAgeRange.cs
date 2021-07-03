@@ -7,16 +7,11 @@ using Library.Persistence.Members;
 using Library.Services.Lendings;
 using Library.Services.Lendings.Contracts;
 using Library.Services.Lendings.Exceptions;
-using Library.Services.Members.Contracts;
 using Library.Services.Tests.Specs.Infrastructure;
 using Library.TestTools.Books;
 using Library.TestTools.Categories;
-using Library.TestTools.Lendings;
 using Library.TestTools.Members;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using Xunit;
 
@@ -75,13 +70,13 @@ namespace Library.Services.Tests.Specs.Lendings.Add
                     MemberId = member.Id,
                     ReturnDate = returnDate
                 };
-                expected = () =>  sut.Add(dto);
+                expected = () => sut.Add(dto);
             }
             [Then("نباید هیچ کتابی به عنوان امانت به فهرست امانت¬ها اضافه گردد")]
             [And("خطای سن اعضا خارج از رده سنی کتاب می¬باشد نمایش داده شود")]
             private void Then()
             {
-                
+
                 expected.Should().ThrowExactly<MemberAgeOutOfBookAgeRangeException>();
             }
             [Fact]

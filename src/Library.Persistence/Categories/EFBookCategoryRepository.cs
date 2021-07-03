@@ -1,14 +1,10 @@
-﻿using System.Linq;
-using System.Threading.Tasks;
-using Library.Entities;
-using Library.Persistence;
-using Library.Services.Books.Contracts;
-using Library.Services.Categories;
+﻿using Library.Entities;
 using Library.Services.Categories.Contracts;
+using System.Linq;
 
 namespace Library.Persistence.Categories
 {
-    public class EFBookCategoryRepository: BookCategoryRepository
+    public class EFBookCategoryRepository : BookCategoryRepository
     {
         private EFDataContext _context;
 

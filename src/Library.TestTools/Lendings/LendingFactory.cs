@@ -6,8 +6,6 @@ using Library.Persistence.Members;
 using Library.Services.Lendings;
 using Library.Services.Lendings.Contracts;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Library.TestTools.Lendings
 {
@@ -19,9 +17,9 @@ namespace Library.TestTools.Lendings
             var repository = new EFLendingRepository(context);
             var Bookepository = new EFBookRepository(context);
             var memberRepository = new EFMemberRepository(context);
-            return new LendingAppService(repository, unitOfWork,memberRepository,Bookepository);
+            return new LendingAppService(repository, unitOfWork, memberRepository, Bookepository);
         }
-        public static Lending GenerateLending(EFDataContext context,int memberId,int bookId,DateTime returnDate)
+        public static Lending GenerateLending(EFDataContext context, int memberId, int bookId, DateTime returnDate)
         {
             var lending = new Lending
             {
@@ -33,7 +31,7 @@ namespace Library.TestTools.Lendings
             context.SaveChanges();
             return lending;
         }
-        public static AddLendingDto GenerateAddLendingDto(DateTime returnDate, int memberId,int bookId)
+        public static AddLendingDto GenerateAddLendingDto(DateTime returnDate, int memberId, int bookId)
         {
             return new AddLendingDto
             {

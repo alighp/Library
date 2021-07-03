@@ -17,7 +17,8 @@ namespace Library.Services.Members
 
         public async Task<int> Add(AddMemberDto dto)
         {
-            Member member = new Member { 
+            Member member = new Member
+            {
                 Address = dto.Address,
                 FirstName = dto.FirstName,
                 LastName = dto.LastName,

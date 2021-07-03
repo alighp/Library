@@ -16,7 +16,7 @@ namespace Library.Persistence.Books
             builder.Property(_ => _.MaxAge).IsRequired();
             builder.Property(_ => _.MinAge).IsRequired();
             builder.Property(_ => _.CategoryId).IsRequired();
-            builder.HasOne(_ => _.Category).WithMany().HasForeignKey(_=>_.CategoryId);
+            builder.HasOne(_ => _.Category).WithMany().HasForeignKey(_ => _.CategoryId);
         }
     }
 }

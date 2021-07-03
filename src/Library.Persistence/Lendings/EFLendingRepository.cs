@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Library.Entities;
+﻿using Library.Entities;
 using Library.Services.Lendings.Contracts;
 
 namespace Library.Persistence.Lendings

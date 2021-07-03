@@ -5,8 +5,6 @@ using Library.Services.Books.Contracts;
 using Library.Services.Categories.Exceptions;
 using Library.TestTools.Books;
 using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 using Xunit;
 
@@ -24,7 +22,8 @@ namespace Library.Services.Tests.Unit.Books
         }
         [Theory]
         [InlineData(-1)]
-        public void Add_throw_exception_when_categoryId_inValid(int inValidCategoryId) {
+        public void Add_throw_exception_when_categoryId_inValid(int inValidCategoryId)
+        {
             var lending = BookFactory.GenerateAddBookDto(inValidCategoryId);
 
             Func<Task> expected = () => sut.Add(lending);

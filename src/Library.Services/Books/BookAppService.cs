@@ -1,10 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
-using Library.Entities;
+﻿using Library.Entities;
 using Library.Services.Books.Contracts;
 using Library.Services.Categories.Contracts;
 using Library.Services.Categories.Exceptions;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace Library.Services.Books
 {
@@ -23,7 +22,8 @@ namespace Library.Services.Books
         public async Task<int> Add(AddBookDto dto)
         {
             gaurdAgainstBookCategoryNotFound(dto.CategoryId);
-            Book book = new Book {
+            Book book = new Book
+            {
                 Author = dto.Author,
                 MaxAge = dto.MaxAge,
                 MinAge = dto.MinAge,

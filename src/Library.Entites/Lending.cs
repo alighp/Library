@@ -2,7 +2,8 @@
 
 namespace Library.Entities
 {
-    public class Lending {
+    public class Lending
+    {
         public int Id { get; set; }
         public DateTime ReturnDate { get; set; }
         public DateTime DeliveryDate { get; set; }

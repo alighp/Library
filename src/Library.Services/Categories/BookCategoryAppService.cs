@@ -1,7 +1,6 @@
-﻿using System.Threading.Tasks;
-using Library.Entities;
-using Library.Services.Books.Contracts;
+﻿using Library.Entities;
 using Library.Services.Categories.Contracts;
+using System.Threading.Tasks;
 
 namespace Library.Services.Categories
 {

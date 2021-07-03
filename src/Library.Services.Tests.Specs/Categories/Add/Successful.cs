@@ -1,12 +1,12 @@
-﻿using System.Linq;
-using System.Threading.Tasks;
-using FluentAssertions;
+﻿using FluentAssertions;
 using Library.Persistence;
 using Library.Persistence.Categories;
 using Library.Services.Categories;
 using Library.Services.Categories.Contracts;
 using Library.Services.Tests.Specs.Infrastructure;
 using Library.TestTools.Categories;
+using System.Linq;
+using System.Threading.Tasks;
 using Xunit;
 
 namespace Library.Services.Tests.Specs.Categories.Add
@@ -36,7 +36,8 @@ namespace Library.Services.Tests.Specs.Categories.Add
         }
         [Then("باید تنها یک دسته¬بندی با عنوان رمان خارجی" +
             " در فهرست دسته¬بندی کتاب¬ها وجود داشته باشد")]
-        private void Then() {
+        private void Then()
+        {
 
             var expected = context.BookCategories.First();
             expected.Title.Should().Be("رمان خارجی");

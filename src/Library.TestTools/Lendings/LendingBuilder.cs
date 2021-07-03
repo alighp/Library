@@ -1,12 +1,10 @@
 ﻿using Library.Entities;
 using Library.Persistence;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Library.TestTools.Lendings
 {
-    public  class LendingBuilder
+    public class LendingBuilder
     {
         private Lending lending = new Lending
         {
@@ -23,7 +21,7 @@ namespace Library.TestTools.Lendings
             lending.DeliveryDate = date;
             return this;
         }
-        public Lending Build(EFDataContext context,int bookId,int memberId)
+        public Lending Build(EFDataContext context, int bookId, int memberId)
         {
             lending.BookId = bookId;
             lending.MemberId = memberId;

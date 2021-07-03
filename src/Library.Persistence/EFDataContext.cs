@@ -1,14 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
-using System.Threading.Tasks;
-using Library.Entities;
+﻿using Library.Entities;
 using Microsoft.EntityFrameworkCore;
+using System.Reflection;
 
 namespace Library.Persistence
 {
-    public class EFDataContext:DbContext
+    public class EFDataContext : DbContext
     {
         public EFDataContext(DbContextOptions option) : base(option)
         {

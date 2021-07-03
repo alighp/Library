@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Library.Entities;
+﻿using Library.Entities;
 using Library.Persistence;
 using Library.Persistence.Books;
 using Library.Persistence.Categories;
@@ -33,8 +30,10 @@ namespace Library.TestTools.Books
             context.SaveChanges();
             return book;
         }
-        public static AddBookDto GenerateAddBookDto(int categoryId,string title="dummy",string author="dummy",byte minAge = 10,byte maxAge = 20) {
-            return new AddBookDto {
+        public static AddBookDto GenerateAddBookDto(int categoryId, string title = "dummy", string author = "dummy", byte minAge = 10, byte maxAge = 20)
+        {
+            return new AddBookDto
+            {
                 Title = title,
                 Author = author,
                 MinAge = minAge,

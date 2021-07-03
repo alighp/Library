@@ -1,14 +1,12 @@
-﻿using System;
-using System.Linq;
-using System.Threading.Tasks;
-using FluentAssertions;
+﻿using FluentAssertions;
 using Library.Entities;
 using Library.Persistence;
 using Library.Services.Books.Contracts;
-using Library.Services.Categories;
 using Library.Services.Tests.Specs.Infrastructure;
 using Library.TestTools.Books;
 using Library.TestTools.Categories;
+using System.Linq;
+using System.Threading.Tasks;
 using Xunit;
 
 namespace Library.Services.Tests.Specs.Books.Update
@@ -28,21 +26,22 @@ namespace Library.Services.Tests.Specs.Books.Update
         }
         [Given("تنها یک کتاب با عنوان شازده کوچولو و نویسنده¬ آنتوان دوسنت اگزوپری" +
             "در دسته¬بندی رمان خارجی و با رده سنی 16تا80 سال در فهرست کتاب¬ها وجود دارد.")]
-        private void Given() {
+        private void Given()
+        {
 
-            bookCategory = CategoryFactory.GenerateCategory(context,"رمان خارجی");
+            bookCategory = CategoryFactory.GenerateCategory(context, "رمان خارجی");
             book = new BookBuilder().WithAuthor("شازده کوچولو")
                                     .WithAuthor("آنتوان دوسنت اگزوپری")
                                     .WithMinAge(16)
                                     .WithMaxAge(80)
-                                    .Build(context,bookCategory.Id);
+                                    .Build(context, bookCategory.Id);
         }
         [When("عنوان کتاب را به گیله¬مرد ویرایش میکنم")]
         private async Task When()
         {
             var dto = BookFactory.GenerateUpdateBookDto(bookCategory.Id, "گیله¬مرد",
-                "آنتوان دوسنت اگزوپری",16,80);
-            await sut.Update(dto,book.Id);
+                "آنتوان دوسنت اگزوپری", 16, 80);
+            await sut.Update(dto, book.Id);
         }
         [Then("باید در فهرست کتاب¬ها، تنها یک کتاب با عنوان گیله¬مرد و نویسنده¬ آنتوان دوسنت اگزوپری در دسته¬بندی رمان خارجی و با رده سنی 16تا80 سال وجود داشته باشد")]
         private void Then()

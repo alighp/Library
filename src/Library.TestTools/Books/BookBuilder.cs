@@ -34,7 +34,7 @@ namespace Library.TestTools.Books
             return this;
         }
 
-        public Book Build(EFDataContext context,int categoryId)
+        public Book Build(EFDataContext context, int categoryId)
         {
             book.CategoryId = categoryId;
             context.Books.Add(book);

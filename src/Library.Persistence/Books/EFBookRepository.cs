@@ -29,16 +29,16 @@ namespace Library.Persistence.Books
         public async Task<List<GetBookDto>> GetAllBooksByCategoryId(int categoryId)
         {
             return await (from b in _context.Books
-                    join bc in _context.BookCategories
-                    on b.CategoryId equals bc.Id
-                    select new GetBookDto
-                    {
-                        Title = b.Title,
-                        Author = b.Author,
-                        MinAge = b.MinAge,
-                        MaxAge = b.MaxAge,
-                        CategoryId = b.CategoryId
-                    }).ToListAsync();
+                          join bc in _context.BookCategories
+                          on b.CategoryId equals bc.Id
+                          select new GetBookDto
+                          {
+                              Title = b.Title,
+                              Author = b.Author,
+                              MinAge = b.MinAge,
+                              MaxAge = b.MaxAge,
+                              CategoryId = b.CategoryId
+                          }).ToListAsync();
         }
     }
 }
