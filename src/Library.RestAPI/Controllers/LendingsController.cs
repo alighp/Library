@@ -23,9 +23,9 @@ namespace Library.RestAPI.Controllers
         }
 
         [HttpPut("{id}")]
-        public async Task Put(int id, UpdateLendingDto dto)
+        public async Task Put(int id)
         {
-            await _service.Update(dto);
+            await _service.UpdateDeliveryDate(id);
 
         }
 

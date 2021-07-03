@@ -41,6 +41,23 @@ namespace Library.Services.Lendings
             return lending.Id;
         }
 
+
+        public async Task UpdateDeliveryDate(int LendingId)
+        {
+            GaurdAgainstLendingNotfound(LendingId);
+            Lending lending = _repository.Find(LendingId);
+            lending.DeliveryDate = DateTime.UtcNow;
+            await _unitOfWork.Completed();
+            GaurdAgainstDeliveryDateAfterRetrunDate(lending.ReturnDate);
+            await _unitOfWork.Completed();
+        }
+
+        private void GaurdAgainstLendingNotfound(int lendingId)
+        {
+            if (_repository.Find(lendingId)==null)
+                throw new LendingNotFoundException();
+        }
+
         private void GaurdAgainstMemberNotfound(int memberId)
         {
             if (_memberRepository.FindById(memberId) == null)
@@ -53,15 +70,10 @@ namespace Library.Services.Lendings
                 throw new BookNotFoundException();
         }
 
-        public async Task Update(UpdateLendingDto dto)
+        private static void GaurdAgainstDeliveryDateAfterRetrunDate(DateTime returnDate)
         {
-            GaurdAgainstDeliveryDateAfterRetrunDate(dto);
-            await _unitOfWork.Completed();
-        }
 
-        private static void GaurdAgainstDeliveryDateAfterRetrunDate(UpdateLendingDto dto)
-        {
-            if (dto.DeliveryDate > dto.ReturnDate)
+            if (DateTime.UtcNow > returnDate)
                 throw new DeliveryDateIsAfterReturnDateException();
         }
 

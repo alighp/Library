@@ -33,6 +33,7 @@ namespace Library.Services.Tests.Specs.Lendings.Update
             private Member member;
             private UpdateLendingDto dto;
             Func<Task> expected;
+            private Lending lending;
             public Successful(ConfigurationFixture configuration) : base(configuration)
             {
                 context = CreateDataContext();
@@ -44,7 +45,7 @@ namespace Library.Services.Tests.Specs.Lendings.Update
                 sut = new LendingAppService(repository, unitOfWork, memberRepository, bookRepository);
             }
             [Given("تنها یک کتاب با عنوان شازده کوچولو به یک عضو کتابخانه" +
-                " با نام علی قناعت پیشه با تاریخ برگشت 2021/07/04 به امانت" +
+                " با نام علی قناعت پیشه با تاریخ برگشت 2021/07/02 به امانت" +
                 " داده شده است")]
             [And("یک کتاب با عنوان شازده کوچولو  و با رده سنی 16 تا 80 سال" +
                 " در فهرست کتاب¬ها وجود دارد")]
@@ -60,7 +61,9 @@ namespace Library.Services.Tests.Specs.Lendings.Update
                                             .WithMinAge(16)
                                             .WithMaxAge(80)
                                             .Build(context, category.Id);
-                var returnDate = new DateTime(2021, 07, 04);
+                var returnDate = new DateTime(2021, 07, 02);
+                lending = new LendingBuilder().WithReturnDate(returnDate)
+                                                     .Build(context, book.Id, member.Id);
                 dto = LendingFactory.GenerateUpdateLendingDto(returnDate, returnDate.AddDays(14), member.Id,book.Id);
                
             }
@@ -68,13 +71,11 @@ namespace Library.Services.Tests.Specs.Lendings.Update
                 " علی قناعت پیشه در تاریخ 2021/05/07 تحویل داده شود")]
             private void When()
             {
-                dto.DeliveryDate = new DateTime(2021, 07, 05);
-                
-                expected = () =>  sut.Update(dto);
+                expected = () =>  sut.UpdateDeliveryDate(lending.Id);
             }
             [Then("تنها یک امانت داده شده مربوط به کتاب با عنوان" +
                 " شازده کوچولو به یک عضو کتابخانه با نام علی قناعت پیشه" +
-                " با تاریخ برگشت 2021/07/04 و تاریخ تحویل 2021/07/05  وجود" +
+                " با تاریخ برگشت 2021/07/02 و تاریخ تحویل 2021/07/05  وجود" +
                 " داشته باشد")]
             [And("خطای تاریخ تحویل بعد از تاریخ برگشت می¬باشد نمایش داده شود")]
             private void Then()

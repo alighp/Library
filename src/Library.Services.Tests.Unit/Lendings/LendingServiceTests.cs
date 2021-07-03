@@ -52,5 +52,14 @@ namespace Library.Services.Tests.Unit.Lendings
 
             expected.Should().ThrowExactly<MemberNotFoundException>();
         }
+        [Theory]
+        [InlineData(-1)]
+        public void Update_throw_exception_when_LendingId_inValid(int inValidMemberId)
+        {
+
+            Func<Task> expected = () => sut.UpdateDeliveryDate(inValidMemberId);
+
+            expected.Should().ThrowExactly<LendingNotFoundException>();
+        }
     }
 }

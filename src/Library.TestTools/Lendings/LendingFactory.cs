@@ -21,11 +21,11 @@ namespace Library.TestTools.Lendings
             var memberRepository = new EFMemberRepository(context);
             return new LendingAppService(repository, unitOfWork,memberRepository,Bookepository);
         }
-        public static Lending GenerateMember(EFDataContext context,int memberId,int bookId)
+        public static Lending GenerateLending(EFDataContext context,int memberId,int bookId,DateTime returnDate)
         {
             var lending = new Lending
             {
-                ReturnDate = new DateTime(2021, 07, 02),
+                ReturnDate = returnDate,
                 MemberId = memberId,
                 BookId = bookId
             };

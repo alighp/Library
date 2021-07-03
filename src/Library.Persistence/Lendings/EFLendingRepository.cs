@@ -19,5 +19,10 @@ namespace Library.Persistence.Lendings
         {
             _context.Lendings.Add(lending);
         }
+
+        public Lending Find(int id)
+        {
+            return _context.Lendings.Find(id);
+        }
     }
 }
