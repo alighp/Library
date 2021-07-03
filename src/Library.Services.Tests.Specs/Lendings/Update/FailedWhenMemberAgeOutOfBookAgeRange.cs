@@ -8,7 +8,6 @@ using Library.Persistence.Members;
 using Library.Services.Lendings;
 using Library.Services.Lendings.Contracts;
 using Library.Services.Lendings.Exceptions;
-using Library.Services.Members.Contracts;
 using Library.Services.Tests.Specs.Infrastructure;
 using Library.TestTools.Books;
 using Library.TestTools.Categories;
@@ -16,9 +15,6 @@ using Library.TestTools.Lendings;
 using Library.TestTools.Members;
 using Moq;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using Xunit;
 
@@ -68,8 +64,8 @@ namespace Library.Services.Tests.Specs.Lendings.Update
                 var returnDate = new DateTime(2021, 07, 02);
                 lending = new LendingBuilder().WithReturnDate(returnDate)
                                                      .Build(context, book.Id, member.Id);
-                dto = LendingFactory.GenerateUpdateLendingDto(returnDate, returnDate.AddDays(14), member.Id,book.Id);
-               
+                dto = LendingFactory.GenerateUpdateLendingDto(returnDate, returnDate.AddDays(14), member.Id, book.Id);
+
             }
             [When(": کتاب با عنوان شازده کوچولو توسط عضو کتابخانه با نام" +
                 " علی قناعت پیشه در تاریخ 2021/07/05 تحویل داده شود")]
@@ -77,7 +73,7 @@ namespace Library.Services.Tests.Specs.Lendings.Update
             {
                 var dateTimeNow = new DateTime(2021, 07, 05);
                 dateTimeServiceMock.Setup(_ => _.Now).Returns(dateTimeNow);
-                expected = () =>  sut.UpdateDeliveryDate(lending.Id);
+                expected = () => sut.UpdateDeliveryDate(lending.Id);
             }
             [Then("تنها یک امانت داده شده مربوط به کتاب با عنوان" +
                 " شازده کوچولو به یک عضو کتابخانه با نام علی قناعت پیشه" +
@@ -86,7 +82,7 @@ namespace Library.Services.Tests.Specs.Lendings.Update
             [And("خطای تاریخ تحویل بعد از تاریخ برگشت می¬باشد نمایش داده شود")]
             private void Then()
             {
-                
+
                 expected.Should().ThrowExactly<DeliveryDateIsAfterReturnDateException>();
             }
             [Fact]

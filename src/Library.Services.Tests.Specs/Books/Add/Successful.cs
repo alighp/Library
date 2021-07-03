@@ -1,16 +1,13 @@
-﻿using System;
-using System.Linq;
-using System.Threading.Tasks;
-using FluentAssertions;
+﻿using FluentAssertions;
 using Library.Entities;
 using Library.Persistence;
 using Library.Services.Books.Contracts;
-using Library.Services.Categories;
 using Library.Services.Tests.Specs.Infrastructure;
 using Library.TestTools.Books;
 using Library.TestTools.Categories;
+using System.Linq;
+using System.Threading.Tasks;
 using Xunit;
-using Xunit.Sdk;
 
 namespace Library.Services.Tests.Specs.Books.Add
 {
@@ -27,7 +24,8 @@ namespace Library.Services.Tests.Specs.Books.Add
             sut = BookFactory.CreateService(context);
         }
         [Given("یک دسته¬بندی با عنوان رمان خارجی وجود دارد")]
-        private void Given() {
+        private void Given()
+        {
 
             bookCategory = CategoryFactory.GenerateCategory(context, "رمان خارجی");
         }
@@ -35,8 +33,8 @@ namespace Library.Services.Tests.Specs.Books.Add
             "در دسته¬بندی رمان خارجی و با رده سنی 16تا80 سال اضافه می¬نمایم")]
         private async Task When()
         {
-            var dto = BookFactory.GenerateAddBookDto(bookCategory.Id,"شازده کوچولو",
-                "آنتوان دوسنت اگزوپری",16,80);
+            var dto = BookFactory.GenerateAddBookDto(bookCategory.Id, "شازده کوچولو",
+                "آنتوان دوسنت اگزوپری", 16, 80);
             await sut.Add(dto);
         }
         [Then("باید تنها یک دسته¬بندی با عنوان رمان خارجی" +

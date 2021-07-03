@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
-using Library.Services.Categories;
 
 namespace Library.Services.Books.Contracts
 {

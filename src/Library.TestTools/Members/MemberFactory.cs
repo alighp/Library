@@ -1,15 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Library.Entities;
+﻿using Library.Entities;
 using Library.Persistence;
-using Library.Persistence.Books;
-using Library.Persistence.Categories;
 using Library.Persistence.Members;
-using Library.Services.Books;
-using Library.Services.Books.Contracts;
 using Library.Services.Members;
 using Library.Services.Members.Contracts;
+using System;
 
 namespace Library.TestTools.Members
 {
@@ -28,14 +22,16 @@ namespace Library.TestTools.Members
                 Address = "dummy",
                 FirstName = "dummy",
                 LastName = "dummy",
-                BirthDate = new DateTime(1993,07,02)
+                BirthDate = new DateTime(1993, 07, 02)
             };
             context.Members.Add(member);
             context.SaveChanges();
             return member;
         }
-        public static AddMemberDto GenerateAddMemberDto(DateTime birthDate,string address = "dummy",string firstName = "dummy",string lastName = "dummy") {
-            return new AddMemberDto {
+        public static AddMemberDto GenerateAddMemberDto(DateTime birthDate, string address = "dummy", string firstName = "dummy", string lastName = "dummy")
+        {
+            return new AddMemberDto
+            {
                 Address = address,
                 FirstName = firstName,
                 LastName = lastName,
