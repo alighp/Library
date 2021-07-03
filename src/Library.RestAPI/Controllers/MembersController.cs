@@ -18,9 +18,9 @@ namespace Library.RestAPI.Controllers
             _service = service;
         }
         [HttpPost]
-        public void Add(AddMemberDto dto)
+        public async Task Add(AddMemberDto dto)
         {
-            _service.Add(dto);
+            await _service.Add(dto);
         }
     }
 }

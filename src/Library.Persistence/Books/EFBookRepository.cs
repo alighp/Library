@@ -1,7 +1,9 @@
 ﻿using Library.Entities;
 using Library.Services.Books.Contracts;
+using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace Library.Persistence.Books
 {
@@ -24,9 +26,9 @@ namespace Library.Persistence.Books
             return _context.Books.Find(id);
         }
 
-        public List<GetBookDto> GetAllBooksByCategoryId(int categoryId)
+        public async Task<List<GetBookDto>> GetAllBooksByCategoryId(int categoryId)
         {
-            return (from b in _context.Books
+            return await (from b in _context.Books
                     join bc in _context.BookCategories
                     on b.CategoryId equals bc.Id
                     select new GetBookDto
@@ -36,7 +38,7 @@ namespace Library.Persistence.Books
                         MinAge = b.MinAge,
                         MaxAge = b.MaxAge,
                         CategoryId = b.CategoryId
-                    }).ToList();
+                    }).ToListAsync();
         }
     }
 }

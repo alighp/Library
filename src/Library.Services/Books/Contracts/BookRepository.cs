@@ -1,5 +1,6 @@
 ﻿using Library.Entities;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace Library.Services.Books.Contracts
 {
@@ -7,6 +8,6 @@ namespace Library.Services.Books.Contracts
     {
         void Add(Book book);
         Book FindById(int id);
-        List<GetBookDto> GetAllBooksByCategoryId(int id);
+        Task<List<GetBookDto>> GetAllBooksByCategoryId(int id);
     }
 }

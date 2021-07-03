@@ -17,9 +17,9 @@ namespace Library.RestAPI.Controllers
             _service = service;
         }
         [HttpGet("{categoryId}")]
-        public List<GetBookDto> GetAllBooksByCategoryId(int categoryId)
+        public async Task<List<GetBookDto>> GetAllBooksByCategoryId(int categoryId)
         {
-            return _service.GetAllBooksByCategoryId(categoryId);
+            return await _service.GetAllBooksByCategoryId(categoryId);
         }
         [HttpPost]
         public async Task<int> Post(AddBookDto dto)

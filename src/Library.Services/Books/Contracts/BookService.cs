@@ -8,6 +8,6 @@ namespace Library.Services.Books.Contracts
     {
         Task<int> Add(AddBookDto dto);
         Task Update(UpdateBookDto dto, int id);
-        List<GetBookDto> GetAllBooksByCategoryId(int id);
+        Task<List<GetBookDto>> GetAllBooksByCategoryId(int id);
     }
 }

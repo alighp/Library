@@ -41,9 +41,9 @@ namespace Library.Services.Books
                 throw new BookCategoryNotFoundException();
         }
 
-        public List<GetBookDto> GetAllBooksByCategoryId(int id)
+        public async Task<List<GetBookDto>> GetAllBooksByCategoryId(int id)
         {
-            return _repository.GetAllBooksByCategoryId(id);
+            return await _repository.GetAllBooksByCategoryId(id);
         }
 
         public async Task Update(UpdateBookDto dto, int id)
