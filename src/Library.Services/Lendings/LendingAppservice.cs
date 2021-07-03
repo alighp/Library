@@ -1,5 +1,6 @@
 ﻿using Library.Entities;
 using Library.Services.Books.Contracts;
+using Library.Services.Books.Exceptions;
 using Library.Services.Lendings.Contracts;
 using Library.Services.Lendings.Exceptions;
 using Library.Services.Members.Contracts;
@@ -26,6 +27,8 @@ namespace Library.Services.Lendings
 
         public async Task<int> Add(AddLendingDto dto)
         {
+            GaurdAgainstBookNotfound(dto.BookId);
+            GaurdAgainstMemberNotfound(dto.MemberId);
             GaurdAgainstMemberAgeCantBeOutOfBookAgeRange(dto);
             Lending lending = new Lending
             {
@@ -36,6 +39,18 @@ namespace Library.Services.Lendings
             _repository.Add(lending);
             await _unitOfWork.Completed();
             return lending.Id;
+        }
+
+        private void GaurdAgainstMemberNotfound(int memberId)
+        {
+            if (_memberRepository.FindById(memberId) == null)
+                throw new MemberNotFoundException();
+        }
+
+        private void GaurdAgainstBookNotfound(int bookId)
+        {
+            if (_bookRepository.FindById(bookId) == null)
+                throw new BookNotFoundException();
         }
 
         public async Task Update(UpdateLendingDto dto)
@@ -54,7 +69,7 @@ namespace Library.Services.Lendings
         {
             var book = _bookRepository.FindById(dto.BookId);
             var member = _memberRepository.FindById(dto.MemberId);
-            var memberAge = (byte)(DateTime.Now.Subtract(member.BirthDate).Days / 365);
+            var memberAge = (byte)((DateTime.UtcNow - member.BirthDate).TotalDays / 365);
             if (memberAge < book.MinAge || memberAge > book.MaxAge)
                 throw new MemberAgeOutOfBookAgeRangeException();
         }

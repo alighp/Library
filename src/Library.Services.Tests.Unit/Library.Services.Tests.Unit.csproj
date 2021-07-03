@@ -23,7 +23,6 @@
   <ItemGroup>
     <Folder Include="Books\" />
     <Folder Include="Categories\" />
-    <Folder Include="Lendings\" />
     <Folder Include="Members\" />
   </ItemGroup>
 
