@@ -1,5 +1,6 @@
 ﻿using FluentAssertions;
 using Library.Entities;
+using Library.Infrastructure;
 using Library.Persistence;
 using Library.Persistence.Books;
 using Library.Persistence.Lendings;
@@ -13,6 +14,7 @@ using Library.TestTools.Books;
 using Library.TestTools.Categories;
 using Library.TestTools.Lendings;
 using Library.TestTools.Members;
+using Moq;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -35,6 +37,7 @@ namespace Library.Services.Tests.Specs.Lendings.Update
             private UpdateLendingDto dto;
             Func<Task> expected;
             private Lending lending;
+            private readonly Mock<IDateTimeService> dateTimeServiceMock;
             public Successful(ConfigurationFixture configuration) : base(configuration)
             {
                 context = CreateDataContext();
@@ -42,8 +45,8 @@ namespace Library.Services.Tests.Specs.Lendings.Update
                 var repository = new EFLendingRepository(context);
                 var memberRepository = new EFMemberRepository(context);
                 var bookRepository = new EFBookRepository(context);
-
-                sut = new LendingAppService(repository, unitOfWork, memberRepository, bookRepository);
+                dateTimeServiceMock = new Mock<IDateTimeService>();
+                sut = new LendingAppService(repository, unitOfWork, memberRepository, bookRepository, dateTimeServiceMock.Object);
             }
             [Given("تنها یک کتاب با عنوان شازده کوچولو به یک عضو کتابخانه" +
                 " با نام علی قناعت پیشه با تاریخ برگشت 2021/07/02 به امانت" +
@@ -69,9 +72,11 @@ namespace Library.Services.Tests.Specs.Lendings.Update
                
             }
             [When(": کتاب با عنوان شازده کوچولو توسط عضو کتابخانه با نام" +
-                " علی قناعت پیشه در تاریخ 2021/05/07 تحویل داده شود")]
+                " علی قناعت پیشه در تاریخ 2021/07/05 تحویل داده شود")]
             private void When()
             {
+                var dateTimeNow = new DateTime(2021, 07, 05);
+                dateTimeServiceMock.Setup(_ => _.Now).Returns(dateTimeNow);
                 expected = () =>  sut.UpdateDeliveryDate(lending.Id);
             }
             [Then("تنها یک امانت داده شده مربوط به کتاب با عنوان" +

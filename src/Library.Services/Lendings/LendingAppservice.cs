@@ -1,4 +1,5 @@
 ﻿using Library.Entities;
+using Library.Infrastructure;
 using Library.Services.Books.Contracts;
 using Library.Services.Books.Exceptions;
 using Library.Services.Lendings.Contracts;
@@ -16,6 +17,7 @@ namespace Library.Services.Lendings
         private readonly UnitOfWork _unitOfWork;
         private readonly MemberRepository _memberRepository;
         private readonly BookRepository _bookRepository;
+        private readonly IDateTimeService _dateTimeService;
 
 
         public LendingAppService(LendingRepository repository, UnitOfWork unitOfWork, MemberRepository memberRepository, BookRepository bookRepository)
@@ -24,6 +26,14 @@ namespace Library.Services.Lendings
             _repository = repository;
             _unitOfWork = unitOfWork;
             _bookRepository = bookRepository;
+        }
+        public LendingAppService(LendingRepository repository, UnitOfWork unitOfWork, MemberRepository memberRepository, BookRepository bookRepository, IDateTimeService dateTimeService)
+        {
+            _memberRepository = memberRepository;
+            _repository = repository;
+            _unitOfWork = unitOfWork;
+            _bookRepository = bookRepository;
+            _dateTimeService = dateTimeService;
         }
 
         public async Task<int> Add(AddLendingDto dto)
@@ -47,7 +57,7 @@ namespace Library.Services.Lendings
         {
             GaurdAgainstLendingNotfound(LendingId);
             Lending lending = _repository.Find(LendingId);
-            lending.DeliveryDate = DateTime.UtcNow;
+            lending.DeliveryDate = _dateTimeService.Now;
             await _unitOfWork.Completed();
             GaurdAgainstDeliveryDateAfterRetrunDate(lending.ReturnDate);
             await _unitOfWork.Completed();
@@ -71,10 +81,10 @@ namespace Library.Services.Lendings
                 throw new BookNotFoundException();
         }
 
-        private static void GaurdAgainstDeliveryDateAfterRetrunDate(DateTime returnDate)
+        private void GaurdAgainstDeliveryDateAfterRetrunDate(DateTime returnDate)
         {
 
-            if (DateTime.UtcNow > returnDate)
+            if (_dateTimeService.Now > returnDate)
                 throw new DeliveryDateIsAfterReturnDateException();
         }
 
