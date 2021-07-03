@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Library.Services.Categories
+namespace Library.Services.Categories.Contracts
 {
     public class AddBookCategoryDto
     {

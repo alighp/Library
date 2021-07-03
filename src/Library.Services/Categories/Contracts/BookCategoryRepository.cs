@@ -2,7 +2,7 @@
 using Library.Entities;
 using Library.Services.Categories;
 
-namespace Library.Services.Books.Contracts
+namespace Library.Services.Categories.Contracts
 {
     public interface BookCategoryRepository
     {

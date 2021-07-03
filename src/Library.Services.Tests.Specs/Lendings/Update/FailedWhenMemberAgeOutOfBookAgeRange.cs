@@ -24,6 +24,7 @@ namespace Library.Services.Tests.Specs.Lendings.Update
 {
     public class FailedWhenMemberAgeOutOfBookAgeRange
     {
+        [Feature(title: "", AsA = "من به عنوان کتابدار", InOrderTo = "مدیریت امانت¬دادن کتاب¬ها ", IWantTo = "امانت¬دادن کتاب¬ها را ثبت کنم")]
         [Scenario("تحویل کتاب امانت داده شده بعد از تاریخ برگشت")]
         public class Successful : EFDataContextDatabaseFixture
         {

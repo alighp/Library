@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using Library.Entities;
 using Library.Services.Books.Contracts;
+using Library.Services.Categories.Contracts;
 using Library.Services.Categories.Exceptions;
 
 namespace Library.Services.Books

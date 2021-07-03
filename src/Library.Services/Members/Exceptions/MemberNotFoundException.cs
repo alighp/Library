@@ -3,9 +3,9 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Library.Services.Books.Exceptions
+namespace Library.Services.Members.Exceptions
 {
-    public class BookNotFoundException: BusinessException
+    public class MemberNotFoundException:BusinessException
     {
     }
 }

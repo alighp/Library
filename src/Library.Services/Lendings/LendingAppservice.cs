@@ -4,6 +4,7 @@ using Library.Services.Books.Exceptions;
 using Library.Services.Lendings.Contracts;
 using Library.Services.Lendings.Exceptions;
 using Library.Services.Members.Contracts;
+using Library.Services.Members.Exceptions;
 using System;
 using System.Threading.Tasks;
 

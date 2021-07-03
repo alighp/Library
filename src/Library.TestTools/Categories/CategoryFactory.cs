@@ -1,6 +1,7 @@
 ﻿using Library.Entities;
 using Library.Persistence;
 using Library.Services.Categories;
+using Library.Services.Categories.Contracts;
 using System;
 using System.Collections.Generic;
 using System.Text;

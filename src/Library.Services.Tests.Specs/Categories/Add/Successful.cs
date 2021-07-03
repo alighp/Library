@@ -11,6 +11,8 @@ using Xunit;
 
 namespace Library.Services.Tests.Specs.Categories.Add
 {
+
+    [Feature(title: "", AsA = "من به عنوان کتابدار", InOrderTo = "مدیریت دسته¬بندی کتابها ", IWantTo = "دسته¬بندی ثبت کنم")]
     [Scenario("ثبت یک دسته بندی")]
     public class Successful : EFDataContextDatabaseFixture
     {

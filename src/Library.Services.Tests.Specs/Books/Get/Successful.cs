@@ -13,6 +13,7 @@ using Xunit;
 
 namespace Library.Services.Tests.Specs.Books.Get
 {
+    [Feature(title: "", AsA = "من به عنوان کتابدار", InOrderTo = "مدیریت کتابها  ", IWantTo = "فهرست کتاب ها را نمایش دهم.")]
     [Scenario("نمایش فهرست کتاب¬های یک دسته¬بندی خاص")]
     public class Successful: EFDataContextDatabaseFixture
     {

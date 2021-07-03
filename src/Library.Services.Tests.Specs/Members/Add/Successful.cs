@@ -11,6 +11,7 @@ using Xunit;
 
 namespace Library.Services.Tests.Specs.Members.Add
 {
+    [Feature(title: "", AsA = "من به عنوان کتابدار", InOrderTo = "مدیریت اعضای کتابخانه", IWantTo = "مشخصات اعضا را ثبت کنم")]
     [Scenario("ثبت یک عضو جدید به کتابخانه")]
     public class Successful : EFDataContextDatabaseFixture
     {

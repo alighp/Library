@@ -13,6 +13,7 @@ using Xunit;
 
 namespace Library.Services.Tests.Specs.Books.Update
 {
+    [Feature(title: "", AsA = "من به عنوان کتابدار", InOrderTo = "مدیریت کتابها  ", IWantTo = "کتاب ویرایش کنم")]
     [Scenario("ویرایش مشخصات کتاب")]
     public class Successful : EFDataContextDatabaseFixture
     {

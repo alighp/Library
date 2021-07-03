@@ -10,9 +10,11 @@ using Library.Services.Tests.Specs.Infrastructure;
 using Library.TestTools.Books;
 using Library.TestTools.Categories;
 using Xunit;
+using Xunit.Sdk;
 
 namespace Library.Services.Tests.Specs.Books.Add
 {
+    [Feature(title: "", AsA = "من به عنوان کتابدار", InOrderTo = "مدیریت کتابها  ", IWantTo = "کتاب ثبت کنم")]
     [Scenario("ثبت یک کتاب در دسته¬بندی")]
     public class Successful : EFDataContextDatabaseFixture
     {

@@ -10,7 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Xunit;
 
-namespace Library.Services.Tests.Unit.Categories
+namespace Library.Services.Tests.Unit.Books
 {
     public class BookServiceTests
     {
