@@ -1,5 +1,6 @@
 ﻿using Library.Entities;
 using Library.Services.Categories.Contracts;
+using Library.Services.Categories.Exceptions;
 using System.Threading.Tasks;
 
 namespace Library.Services.Categories
@@ -17,7 +18,8 @@ namespace Library.Services.Categories
 
         public async Task<int> Add(AddBookCategoryDto dto)
         {
-
+            if (_repository.ExistByTitle(dto.Title))
+                throw new DuplicateCategoryTitleException();
             BookCategory bookCategory = MakeBookCategory(dto);
             _repository.Add(bookCategory);
             await _unitOfWork.Completed();

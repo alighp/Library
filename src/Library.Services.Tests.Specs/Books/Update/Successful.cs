@@ -39,8 +39,7 @@ namespace Library.Services.Tests.Specs.Books.Update
         [When("عنوان کتاب را به گیله¬مرد ویرایش میکنم")]
         private async Task When()
         {
-            var dto = BookFactory.GenerateUpdateBookDto(bookCategory.Id, "گیله¬مرد",
-                "آنتوان دوسنت اگزوپری", 16, 80);
+            var dto = BookFactory.GenerateUpdateBookDto(bookCategory.Id, "گیله¬مرد","بزرگ علوی", 16, 80);
             await sut.Update(dto, book.Id);
         }
         [Then("باید در فهرست کتاب¬ها، تنها یک کتاب با عنوان گیله¬مرد و نویسنده¬ آنتوان دوسنت اگزوپری در دسته¬بندی رمان خارجی و با رده سنی 16تا80 سال وجود داشته باشد")]
@@ -48,7 +47,7 @@ namespace Library.Services.Tests.Specs.Books.Update
         {
 
             var expected = context.Books.First();
-            expected.Author.Should().Be("آنتوان دوسنت اگزوپری");
+            expected.Author.Should().Be("بزرگ علوی");
             expected.Title.Should().Be("گیله¬مرد");
             expected.MaxAge.Should().Be(80);
             expected.MinAge.Should().Be(16);

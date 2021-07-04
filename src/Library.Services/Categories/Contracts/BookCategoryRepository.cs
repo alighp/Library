@@ -6,5 +6,6 @@ namespace Library.Services.Categories.Contracts
     {
         void Add(BookCategory bookCategory);
         bool ExistById(int categoryId);
+        bool ExistByTitle(string title);
     }
 }
