@@ -52,11 +52,10 @@ namespace Library.Services.Tests.Specs.Lendings.Add
                                                 .WithBirthDate(birthDate)
                                                 .WithAddress("باسکول نادر")
                                                 .Build(context);
-                var category = CategoryFactory.GenerateCategory(context, "dummy");
                 book = new BookBuilder().WithTitle("شازده کوچولو")
                                             .WithMinAge(16)
                                             .WithMaxAge(80)
-                                            .Build(context, category.Id);
+                                            .Build(context);
 
             }
             [When("یک کتاب با عنوان شازده کوچولو و با رده سنی 16 تا 80 سال" +

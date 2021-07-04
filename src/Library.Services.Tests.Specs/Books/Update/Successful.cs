@@ -34,7 +34,7 @@ namespace Library.Services.Tests.Specs.Books.Update
                                     .WithAuthor("آنتوان دوسنت اگزوپری")
                                     .WithMinAge(16)
                                     .WithMaxAge(80)
-                                    .Build(context, bookCategory.Id);
+                                    .Build(context);
         }
         [When("عنوان کتاب را به گیله¬مرد ویرایش میکنم")]
         private async Task When()

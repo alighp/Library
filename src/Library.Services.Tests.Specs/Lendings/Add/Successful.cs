@@ -36,8 +36,7 @@ namespace Library.Services.Tests.Specs.Lendings.Add
 
             sut = new LendingAppService(repository, unitOfWork, memberRepository, bookRepository);
         }
-        [Given("یک عضو کتابخانه با نام علی قناعت پیشه و تاریخ تولد 2000/07/02" +
-            " و آدرس صدرا – فازیک – بلوار فردوسی وجود دارد")]
+        [Given("یک عضو کتابخانه با نام علی قناعت پیشه و تاریخ تولد 2000/07/02")]
         [And("یک کتاب با عنوان شازده کوچولو و با رده سنی 16 تا 80 سال" +
             " در فهرست کتابها وجود دارد")]
         private void Given()
@@ -46,19 +45,16 @@ namespace Library.Services.Tests.Specs.Lendings.Add
             member = new MemberBuilder().WithFirstName("علی")
                                             .WithLastName("قناعت پیشه")
                                             .WithBirthDate(birthDate)
-                                            .WithAddress("صدرا – فازیک – بلوار فردوسی")
                                             .Build(context);
-            var category = CategoryFactory.GenerateCategory(context, "dummy");
             book = new BookBuilder().WithTitle("شازده کوچولو")
                                         .WithMinAge(16)
                                         .WithMaxAge(80)
-                                        .Build(context, category.Id);
+                                        .Build(context);
 
         }
         [When("یک کتاب با عنوان شازده کوچولو و با رده سنی 16 تا 80 سال" +
             " به یک عضو کتابخانه با نام علی قناعت پیشه و تاریخ تولد 1993/07/02" +
-            " و آدرس صدرا – فازیک – بلوار فردوسی با تاریخ برگشت 04/07/2021 " +
-            "امانت داده شود")]
+            "  با تاریخ برگشت 2021/07/04 امانت داده شود")]
         private async Task When()
         {
             var returnDate = new DateTime(2021, 07, 04);
@@ -72,13 +68,19 @@ namespace Library.Services.Tests.Specs.Lendings.Add
         }
         [Then(": باید در فهرست امانت¬ها تنها یک کتاب با عنوان شازده کوچولو" +
             " و با رده سنی 16تا80 سال به یک عضو کتابخانه با نام علی قناعت پیشه" +
-            " و تاریخ تولد 1993/07/02 و آدرس صدرا – فازیک – بلوار فردوسی با" +
+            " و تاریخ تولد 1993/07/02 با" +
             " تاریخ برگشت 04/07/2021 وجود داشته باشد")]
         private void Then()
         {
             var expected = context.Lendings.First();
-            expected.BookId.Should().Be(dto.BookId);
-            expected.MemberId.Should().Be(dto.MemberId);
+            expected.ReturnDate.Should().Be(dto.ReturnDate);
+            expected.Book.Title.Should().Be("شازده کوچولو");
+            expected.Book.MinAge.Should().Be(16);
+            expected.Book.MaxAge.Should().Be(80);
+            expected.member.FirstName.Should().Be("علی");
+            expected.member.LastName.Should().Be("قناعت پیشه");
+            expected.member.BirthDate.Should().Be(new DateTime(1993,07,02));
+
             expected.ReturnDate.Should().Be(dto.ReturnDate);
         }
         [Fact]

@@ -11,6 +11,7 @@ namespace Library.TestTools.Books
             Author = "dummy",
             MinAge = 10,
             MaxAge = 20,
+            Category = new BookCategory { Title = "dummy"}
         };
 
         public BookBuilder WithTitle(string title)
@@ -28,15 +29,20 @@ namespace Library.TestTools.Books
             book.MinAge = minAge;
             return this;
         }
+        public BookBuilder withCategoryId(int categoryId)
+        {
+            book.Category = null;
+            book.CategoryId = categoryId;
+            return this;
+        }
         public BookBuilder WithMaxAge(byte maxAge)
         {
             book.MaxAge = maxAge;
             return this;
         }
 
-        public Book Build(EFDataContext context, int categoryId)
+        public Book Build(EFDataContext context)
         {
-            book.CategoryId = categoryId;
             context.Books.Add(book);
             context.SaveChanges();
             return book;

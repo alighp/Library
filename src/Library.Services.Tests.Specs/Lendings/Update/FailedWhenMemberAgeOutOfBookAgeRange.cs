@@ -57,11 +57,10 @@ namespace Library.Services.Tests.Specs.Lendings.Update
                                                 .WithLastName("قناعت پیشه")
                                                 .WithBirthDate(birthDate)
                                                 .Build(context);
-                var category = CategoryFactory.GenerateCategory(context, "dummy");
                 book = new BookBuilder().WithTitle("شازده کوچولو")
                                             .WithMinAge(16)
                                             .WithMaxAge(80)
-                                            .Build(context, category.Id);
+                                            .Build(context);
                 var returnDate = new DateTime(2021, 07, 02);
                 lending = new LendingBuilder().WithReturnDate(returnDate)
                                                      .Build(context, book.Id, member.Id);
