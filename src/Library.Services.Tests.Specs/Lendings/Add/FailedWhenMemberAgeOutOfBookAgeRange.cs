@@ -12,6 +12,7 @@ using Library.TestTools.Books;
 using Library.TestTools.Categories;
 using Library.TestTools.Members;
 using System;
+using System.Linq;
 using System.Threading.Tasks;
 using Xunit;
 
@@ -28,7 +29,7 @@ namespace Library.Services.Tests.Specs.Lendings.Add
             private Book book;
             private Member member;
             private AddLendingDto dto;
-            Func<Task> expected;
+            Func<Task> exceptionExpected;
             public Successful(ConfigurationFixture configuration) : base(configuration)
             {
                 context = CreateDataContext();
@@ -70,14 +71,15 @@ namespace Library.Services.Tests.Specs.Lendings.Add
                     MemberId = member.Id,
                     ReturnDate = returnDate
                 };
-                expected = () => sut.Add(dto);
+                exceptionExpected = () => sut.Add(dto);
             }
             [Then("نباید هیچ کتابی به عنوان امانت به فهرست امانت¬ها اضافه گردد")]
             [And("خطای سن اعضا خارج از رده سنی کتاب می¬باشد نمایش داده شود")]
             private void Then()
             {
-
-                expected.Should().ThrowExactly<MemberAgeOutOfBookAgeRangeException>();
+                var expected = context.Lendings.FirstOrDefault();
+                expected.Should().Be(null);
+                exceptionExpected.Should().ThrowExactly<MemberAgeOutOfBookAgeRangeException>();
             }
             [Fact]
             public void Run()

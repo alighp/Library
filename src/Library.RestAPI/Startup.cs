@@ -14,6 +14,7 @@ using Library.Services.Members;
 using Library.Services.Members.Contracts;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -44,7 +45,7 @@ namespace Library.RestAPI
             services.AddScoped<BookCategoryRepository, EFBookCategoryRepository>();
             services.AddScoped<LendingRepository, EFLendingRepository>();
             services.AddScoped<UnitOfWork, EFUnitOfWork>();
-            services.AddDbContext<EFDataContext>(_ => Configuration.GetConnectionString("SqlConnection"));
+            services.AddDbContext<EFDataContext>(_ =>_.UseSqlServer(Configuration.GetConnectionString("SqlConnection")));
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Library.RestAPI", Version = "v1" });

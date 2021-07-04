@@ -24,8 +24,6 @@ namespace Library.RestAPI.Controllers
         {
             return await _service.Add(dto);
         }
-
-        // PUT api/<BooksController>/5
         [HttpPut("{id}")]
         public async Task Put(int id, UpdateBookDto dto)
         {

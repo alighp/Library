@@ -1,4 +1,5 @@
 ﻿using Library.Entities;
+using System.Threading.Tasks;
 
 namespace Library.Services.Categories.Contracts
 {
@@ -6,6 +7,6 @@ namespace Library.Services.Categories.Contracts
     {
         void Add(BookCategory bookCategory);
         bool ExistById(int categoryId);
-        bool ExistByTitle(string title);
+        Task<bool> ExistByTitle(string title);
     }
 }

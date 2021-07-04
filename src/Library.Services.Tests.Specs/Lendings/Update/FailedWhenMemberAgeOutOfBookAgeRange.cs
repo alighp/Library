@@ -15,6 +15,7 @@ using Library.TestTools.Lendings;
 using Library.TestTools.Members;
 using Moq;
 using System;
+using System.Linq;
 using System.Threading.Tasks;
 using Xunit;
 
@@ -31,7 +32,7 @@ namespace Library.Services.Tests.Specs.Lendings.Update
             private Book book;
             private Member member;
             private UpdateLendingDto dto;
-            Func<Task> expected;
+            Func<Task> exceptionExpected;
             private Lending lending;
             private readonly Mock<IDateTimeService> dateTimeServiceMock;
             public Successful(ConfigurationFixture configuration) : base(configuration)
@@ -73,7 +74,8 @@ namespace Library.Services.Tests.Specs.Lendings.Update
             {
                 var dateTimeNow = new DateTime(2021, 07, 05);
                 dateTimeServiceMock.Setup(_ => _.Now).Returns(dateTimeNow);
-                expected = () => sut.UpdateDeliveryDate(lending.Id);
+
+                exceptionExpected = () => sut.UpdateDeliveryDate(lending.Id);
             }
             [Then("تنها یک امانت داده شده مربوط به کتاب با عنوان" +
                 " شازده کوچولو به یک عضو کتابخانه با نام علی قناعت پیشه" +
@@ -82,8 +84,9 @@ namespace Library.Services.Tests.Specs.Lendings.Update
             [And("خطای تاریخ تحویل بعد از تاریخ برگشت می¬باشد نمایش داده شود")]
             private void Then()
             {
-
-                expected.Should().ThrowExactly<DeliveryDateIsAfterReturnDateException>();
+                var expected = context.Lendings.Single(_ => _.Id == lending.Id);
+                exceptionExpected.Should().ThrowExactly<DeliveryDateIsAfterReturnDateException>();
+                expected.DeliveryDate.Should().Be(lending.DeliveryDate);
             }
             [Fact]
             public void Run()

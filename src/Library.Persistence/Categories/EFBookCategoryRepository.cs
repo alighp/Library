@@ -1,6 +1,8 @@
 ﻿using Library.Entities;
 using Library.Services.Categories.Contracts;
+using Microsoft.EntityFrameworkCore;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace Library.Persistence.Categories
 {
@@ -22,9 +24,9 @@ namespace Library.Persistence.Categories
             return _context.BookCategories.Any(_ => _.Id == categoryId);
         }
 
-        public bool ExistByTitle(string title)
+        public async Task<bool> ExistByTitle(string title)
         {
-            return _context.BookCategories.Any(_=>_.Title == title);
+            return await _context.BookCategories.AnyAsync(_=>_.Title == title);
         }
     }
 }

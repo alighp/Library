@@ -28,9 +28,8 @@ namespace Library.Persistence.Books
 
         public async Task<List<GetBookDto>> GetAllBooksByCategoryId(int categoryId)
         {
-            return await (from b in _context.Books
-                          join bc in _context.BookCategories
-                          on b.CategoryId equals bc.Id
+            var check =  await (from b in _context.Books
+                          where b.CategoryId == categoryId
                           select new GetBookDto
                           {
                               Title = b.Title,
@@ -39,6 +38,7 @@ namespace Library.Persistence.Books
                               MaxAge = b.MaxAge,
                               CategoryId = b.CategoryId
                           }).ToListAsync();
+            return check;
         }
     }
 }

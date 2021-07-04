@@ -18,7 +18,7 @@ namespace Library.Services.Categories
 
         public async Task<int> Add(AddBookCategoryDto dto)
         {
-            if (_repository.ExistByTitle(dto.Title))
+            if (await _repository.ExistByTitle(dto.Title))
                 throw new DuplicateCategoryTitleException();
             BookCategory bookCategory = MakeBookCategory(dto);
             _repository.Add(bookCategory);
